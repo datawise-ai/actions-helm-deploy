@@ -1,13 +1,25 @@
 name: 'k8s helm deploy'
 description: 'use helm to deploy to k8s'
-inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+inputs: 
+  PROJECT: 
     required: true
-    default: 'World'
-outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  APP:
+    required: true
+  INSTANCE:
+    required: true
+  REPOSITORY:
+    required: false
+  DOCKER_USER: 
+    required: true
+    default: "builder"
+  DOCKER_PASS:
+    required: false
+  PROJECT_VALUES:
+    required: false
+    default: ".github/helm/values-project.yml"    
+  INSTANCE_VALUES:
+    required: false
+    default: ".github/helm/values-insance.yml"  
 runs:
   using: 'docker'
   image: 'Dockerfile'
