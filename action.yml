@@ -7,19 +7,21 @@ inputs:
     required: true
   INSTANCE:
     required: true
-  REPOSITORY:
-    required: false
-  DOCKER_USER: 
+  VERSION:
     required: true
-    default: "builder"
-  DOCKER_PASS:
+  VALUE_FILES:
+    required: true
+    default: ".github/helm/values.yml"
+  RELEASE:
+    required: true
+  CHART:
+    required: true
+  CHART_REPO:
     required: false
-  PROJECT_VALUES:
+  CHART_REPO_ALIAS:
     required: false
-    default: ".github/helm/values-project.yml"    
-  INSTANCE_VALUES:
-    required: false
-    default: ".github/helm/values-insance.yml"  
+  KUBECONFIG_FILE:
+    required: true
 runs:
   using: 'docker'
   image: 'Dockerfile'
