@@ -10,6 +10,7 @@ if [ -n "$INPUT_CHART_REPO" ]; then
 fi
 
 helm repo update
+helm search repo $INPUT_CHART_REPO_ALIAS
 
 echo helm upgrade --install --set deploy.project=$INPUT_PROJECT --set deploy.app=$INPUT_APP --set deploy.instance=$INPUT_INSTANCE --set deploy.service=$INPUT_SERVICE --set deploy.version=$INPUT_VERSION -f $(echo $INPUT_VALUE_FILES | sed 's/,/ -f /g') $INPUT_RELEASE $INPUT_CHART
 
