@@ -5,6 +5,8 @@ inputs:
     required: true
   APP:
     required: true
+  SERVICE:
+    required: true    
   INSTANCE:
     required: true
   VERSION:
