@@ -14,7 +14,7 @@ helm search repo $INPUT_CHART_REPO_ALIAS
 
 export VALFILE="$(echo $INPUT_VALUE_FILES | awk -F, '{print $(NF)}')"
 echo Searching for instance specific value file for $VALFILE
-export INSTANCE_VALFILE="$(dirname $VALFILE)/devel.$(basename $VALFILE)"
+export INSTANCE_VALFILE="$(dirname $VALFILE)/${INPUT_INSTANCE}.$(basename $VALFILE)"
 if [ -f "$INSTANCE_VALFILE" ]; then
 	INCLUDE_VALFILE="-f $INSTANCE_VALFILE"
 	echo Found $INSTANCE_VALFILE :
