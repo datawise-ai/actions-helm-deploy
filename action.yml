@@ -13,7 +13,7 @@ inputs:
     required: true
   VALUE_FILES:
     required: true
-    default: ".github/helm/values.yml"
+    default: ".github/helm/values.yaml"
   RELEASE:
     required: true
   CHART:
@@ -24,6 +24,9 @@ inputs:
     required: false
   KUBECONFIG_FILE:
     required: true
+  TIMEOUT:
+    required: true
+    default: "2m0s"
 runs:
   using: 'docker'
   image: 'Dockerfile'
