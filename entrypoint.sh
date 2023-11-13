@@ -35,3 +35,7 @@ echo "* INPUT_INSTANCE=${INPUT_INSTANCE} " >> $GITHUB_STEP_SUMMARY
 
 echo "try this endpoint - url:" >> $GITHUB_STEP_SUMMARY
 echo " https://${INPUT_PROJECT}-${INPUT_APP}-${INPUT_SERVICE}-${INPUT_INSTANCE}.dev.datawise.ai " >> $GITHUB_STEP_SUMMARY
+
+INGRES_OUT=`kubectl get ingress -n ${INPUT_PROJECT} ${INPUT_PROJECT}-${INPUT_APP}-${INPUT_SERVICE}-${INPUT_INSTANCE}   -o json 2> /dev/null| jq -r ' .spec.rules[] | .host as $host | .http.paths[] | ( $host + .path)' | sort | grep -v ^/ `
+
+echo " https://${INGRES_OUT} " >> $GITHUB_STEP_SUMMARY
