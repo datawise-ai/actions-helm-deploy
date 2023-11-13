@@ -19,7 +19,7 @@ if [ -f "$INSTANCE_VALFILE" ]; then
 	INCLUDE_VALFILE="-f $INSTANCE_VALFILE"
 	echo Found $INSTANCE_VALFILE :
 	cat $INSTANCE_VALFILE
-fi 
+fi
 
 echo helm upgrade --install --wait --timeout $INPUT_TIMEOUT --set deploy.project=$INPUT_PROJECT --set deploy.app=$INPUT_APP --set deploy.instance=$INPUT_INSTANCE --set deploy.service=$INPUT_SERVICE --set deploy.version=$INPUT_VERSION -f $(echo $INPUT_VALUE_FILES | sed 's/,/ -f /g') $INCLUDE_VALFILE $INPUT_RELEASE $INPUT_CHART
 
@@ -28,3 +28,10 @@ helm template --debug --set deploy.project=$INPUT_PROJECT --set deploy.app=$INPU
 helm upgrade --install --wait --timeout $INPUT_TIMEOUT --set deploy.project=$INPUT_PROJECT --set deploy.app=$INPUT_APP --set deploy.instance=$INPUT_INSTANCE --set deploy.service=$INPUT_SERVICE --set deploy.version=$INPUT_VERSION -f $(echo $INPUT_VALUE_FILES | sed 's/,/ -f /g') $INCLUDE_VALFILE $INPUT_RELEASE $INPUT_CHART
 
 
+echo "* INPUT_PROJECT=${INPUT_PROJECT} " >> $GITHUB_STEP_SUMMARY
+echo "* INPUT_APP=${INPUT_APP} " >> $GITHUB_STEP_SUMMARY
+echo "* INPUT_SERVICE=${INPUT_SERVICE} " >> $GITHUB_STEP_SUMMARY
+echo "* INPUT_INSTANCE=${INPUT_INSTANCE} " >> $GITHUB_STEP_SUMMARY
+
+echo "try this endpoint - url:" >> $GITHUB_STEP_SUMMARY
+echo " https://${INPUT_PROJECT}-${INPUT_APP}-${INPUT_SERVICE}-${INPUT_INSTANCE}.dev.datawise.ai " >> $GITHUB_STEP_SUMMARY
