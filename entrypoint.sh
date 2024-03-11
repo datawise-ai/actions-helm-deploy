@@ -25,7 +25,7 @@ echo helm upgrade --install --wait --timeout $INPUT_TIMEOUT --set deploy.project
 
 helm template --debug --set deploy.project=$INPUT_PROJECT --set deploy.app=$INPUT_APP --set deploy.instance=$INPUT_INSTANCE --set deploy.service=$INPUT_SERVICE --set deploy.version=$INPUT_VERSION -f $(echo $INPUT_VALUE_FILES | sed 's/,/ -f /g') $INCLUDE_VALFILE $INPUT_RELEASE $INPUT_CHART
 
-helm upgrade --install  --force --wait --timeout $INPUT_TIMEOUT --set deploy.project=$INPUT_PROJECT --set deploy.app=$INPUT_APP --set deploy.instance=$INPUT_INSTANCE --set deploy.service=$INPUT_SERVICE --set deploy.version=$INPUT_VERSION -f $(echo $INPUT_VALUE_FILES | sed 's/,/ -f /g') $INCLUDE_VALFILE $INPUT_RELEASE $INPUT_CHART
+helm upgrade --install --wait --timeout $INPUT_TIMEOUT --set deploy.project=$INPUT_PROJECT --set deploy.app=$INPUT_APP --set deploy.instance=$INPUT_INSTANCE --set deploy.service=$INPUT_SERVICE --set deploy.version=$INPUT_VERSION -f $(echo $INPUT_VALUE_FILES | sed 's/,/ -f /g') $INCLUDE_VALFILE $INPUT_RELEASE $INPUT_CHART
 
 kubectl rollout restart deployment "$INPUT_PROJECT-$INPUT_APP-$INPUT_SERVICE-$INPUT_INSTANCE" -n $INPUT_PROJECT
 
